@@ -2,7 +2,7 @@ from random import choice
 import time
 
 mystery_words = ["python", "javascript", "fullstack", "function", "variable", ""]
-tepo_f = time.time()
+start_time = time.time()
 
 
 def hangman_game(attempt):
@@ -72,39 +72,60 @@ def hangman_game(attempt):
     print(step[attempt])
 
 
-dice_choice = choice(mystery_words)
-hidden_word = ["*"] * len(dice_choice)
-health = 6
-already_gess = set()
-print(f" hidden word: {"".join(hidden_word)}")
-max_error = 0
-attempt = 0
+# main function
+def main():
+    print("{:=^70}".format("WELCOME TO HANGMAN GAME "))
+    dice_choice = choice(mystery_words)
+    hidden_word = ["*"] * len(dice_choice)
+    health = 6
+    already_gess = set()
+    attempt = 0
 
-while health > max_error:
-    health -= 1
+    while health > 0:
 
-    tempo = time.time()
-    print(f"your health number:  {health}")
-    hangman_game(attempt)
+        print(f" Hidden word: {"".join(hidden_word)}")
+        print(f"Health left:  {health}")
+        print(
+            f"Already guessed :{",".join(sorted(already_gess)) if already_gess else "None"}"
+        )
+        hangman_game(attempt)
 
-    word_input = input("Guess letters of mystery Word: ").lower()
-    already_gess.add(word_input)
-    if len(word_input) != 1 or not word_input.isalpha():
-        print("Error: your entry cannot exceed 1 letter")
+        guess = input("Guess letters of mystery Word: ").lower()
 
-    elif word_input in dice_choice and "*" in hidden_word:
+        if len(guess) != 1 or not guess.isalpha():
 
-        for i, letter in enumerate(dice_choice):
+            print("Error: your entry cannot exceed 1 letter")
+            continue
 
-            if letter == word_input:
-                print("Well done! you are find one letter")
-                hidden_word[i] = word_input
-                print("".join(hidden_word))
+        if guess in already_gess:
+            print("You already guess this letter")
+            continue
 
-    elif word_input not in dice_choice:
-        print("".join(already_gess))
-        print(f"Oups! you are lose . health: {health}")
-        attempt += 1
-        if attempt == len(dice_choice):
-            print(f"you are loose the mystery word is :{dice_choice}")
+        already_gess.add(guess)
+
+        # win condition
+        if guess in dice_choice:
+            print("well done!! you are  find one letter")
+            for i, letter in enumerate(dice_choice):
+                if guess == letter:
+                    hidden_word[i] = guess
+
+        else:
+            print("Oups!! Wrong gess")
+            attempt += 1
+            health -= 1
+
+        if "*" not in hidden_word:
+            elapsed_time = time.time() - start_time
+            print(f"Well done!! you are win in{elapsed_time:.2f} second")
+            print(f"the secret word is :{dice_choice}")
             break
+        else:
+            elapsed_time = time.time() - start_time
+            hangman_game(attempt)
+            print(f"Oups!! you lost the time taken is {elapsed_time:.2f} second")
+            print(f"the secret word is :{dice_choice}")
+
+
+if __name__ == "__main__":
+    main()
