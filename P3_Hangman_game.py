@@ -1,8 +1,8 @@
 from random import choice
 import time
 
-mystery_words = ["python", "javascript", "fullstack", "function", "variable", ""]
-start_time = time.time()
+mystery_words = ["python", "javascript", "fullstack", "function", "variable", "algorithm", "data", "structure", "object", "oriented"]
+
 
 
 def hangman_game(attempt):
@@ -74,6 +74,7 @@ def hangman_game(attempt):
 
 # main function
 def main():
+    start_time = time.time()
     print("{:=^70}".format("WELCOME TO HANGMAN GAME "))
     dice_choice = choice(mystery_words)
     hidden_word = ["*"] * len(dice_choice)
@@ -94,7 +95,7 @@ def main():
 
         if len(guess) != 1 or not guess.isalpha():
 
-            print("Error: your entry cannot exceed 1 letter")
+            print("Error: you must enter exactly 1 letter")
             continue
 
         if guess in already_gess:
@@ -117,14 +118,15 @@ def main():
 
         if "*" not in hidden_word:
             elapsed_time = time.time() - start_time
-            print(f"Well done!! you are win in{elapsed_time:.2f} second")
-            print(f"the secret word is :{dice_choice}")
+            print(f"Well done!! you are win in {elapsed_time:.2f} second")
+            print(f"the secret word is: {dice_choice}")
             break
-        else:
+
+        if health == 0:
             elapsed_time = time.time() - start_time
-            hangman_game(attempt)
             print(f"Oups!! you lost the time taken is {elapsed_time:.2f} second")
-            print(f"the secret word is :{dice_choice}")
+            print(f"the secret word is: {dice_choice}")
+            break
 
 
 if __name__ == "__main__":
