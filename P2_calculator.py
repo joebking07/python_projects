@@ -1,9 +1,8 @@
-
 def advanced_calculator():
     historique = []
     while True:
-        calc = 'bienvenue dans votre calculatrice avancée'
-        print(f"{calc:=^51}")  
+        calc = "bienvenue dans votre calculatrice avancée"
+        print(f"{calc:=^51}")
 
         print("1: Addition (+)")
         print("2: Soustraction (-)")
@@ -16,15 +15,24 @@ def advanced_calculator():
 
         try:
             choix = input("entrez votre choix :")
-            if choix == "+" or choix == "1" : choix = 1
-            elif choix == "-" or choix =="2" : choix = 2
-            elif choix == "*" or choix == "3" : choix = 3
-            elif choix == "/" or choix == "4" : choix = 4 
-            elif choix == "^" or choix == "**" or  choix == "5" : choix = 5
-            elif choix == "%" or choix =="6" : choix = 6
-            elif choix == "7" : choix = 7
-            elif choix == "8" : choix = 8
-            else: raise ValueError
+            if choix == "+" or choix == "1":
+                choix = 1
+            elif choix == "-" or choix == "2":
+                choix = 2
+            elif choix == "*" or choix == "3":
+                choix = 3
+            elif choix == "/" or choix == "4":
+                choix = 4
+            elif choix == "^" or choix == "**" or choix == "5":
+                choix = 5
+            elif choix == "%" or choix == "6":
+                choix = 6
+            elif choix == "7":
+                choix = 7
+            elif choix == "8":
+                choix = 8
+            else:
+                raise ValueError
             choix = int(choix)
         except ValueError:
             print(" Erreur : veullier réesayer")
@@ -34,7 +42,7 @@ def advanced_calculator():
                 quitter = input("voulez vous quitter? \u2192 (oui/non) :")
                 if quitter == "oui":
                     quit = " MERCI ET A BIENTOT "
-                    print(F"{quit:_^50}")
+                    print(f"{quit:_^50}")
                     break
                 else:
                     continue
@@ -57,11 +65,11 @@ def advanced_calculator():
             print("Erreur : entrée de nombre invalide.")
             continue
         if choix == 1:
-                result = nbr1 + nbr2
-                clcf = "addition"
-                sn_calc = "+"
+            result = nbr1 + nbr2
+            clcf = "addition"
+            sn_calc = "+"
         elif choix == 2:
-            result  =  nbr1 - nbr2
+            result = nbr1 - nbr2
             clcf = "soustraction"
             sn_calc = "-"
         elif choix == 3:
@@ -74,41 +82,30 @@ def advanced_calculator():
                 raise ZeroDivisionError
             else:
                 result = nbr1 / nbr2
-                result = round(result,2)
+                result = round(result, 2)
                 clcf = "division"
                 sn_calc = "/"
         elif choix == 5:
             nbr2 = int(nbr2)
-            result = pow(nbr1,nbr2)
-            result = round(result,2)
+            result = pow(nbr1, nbr2)
+            result = round(result, 2)
             clcf = "puissance"
-            sn_calc ="^" 
+            sn_calc = "^"
         elif choix == 6:
-            if nbr2 == 0: 
+            if nbr2 == 0:
                 print("Erreur: aucun nombre n'est divisible par zero")
                 raise ZeroDivisionError
             else:
                 result = nbr1 % nbr2
-                result = round(result,2)
+                result = round(result, 2)
                 clcf = "modulo"
                 sn_calc = "%"
         print(f"votre calcul : {clcf} a pour résultat:{result:.2f} ")
-                    
+
         historique.append(f"{nbr1} {sn_calc} { nbr2} = {result:.2f}")
         if len(historique) > 5:
             historique.pop(0)
-                    
-    
-if __name__== "__main__":
-    advanced_calculator()   
-                    
-            
-                        
-                        
-                            
-
-                        
 
 
-
-            
+if __name__ == "__main__":
+    advanced_calculator()

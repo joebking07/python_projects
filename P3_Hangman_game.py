@@ -1,8 +1,18 @@
 from random import choice
 import time
 
-mystery_words = ["python", "javascript", "fullstack", "function", "variable", "algorithm", "data", "structure", "object", "oriented"]
-
+mystery_words = [
+    "python",
+    "javascript",
+    "fullstack",
+    "function",
+    "variable",
+    "algorithm",
+    "data",
+    "structure",
+    "object",
+    "oriented",
+]
 
 
 def hangman_game(attempt):
