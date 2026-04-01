@@ -1,0 +1,19 @@
+{
+    "Eating": {
+        "date": "Wed Apr  1 09:41:43 2026",
+        "Article": [
+            {
+                "Name": "rice",
+                "qties": 2,
+                "unity price": 2000.0,
+                "Total price": 4000.0
+            },
+            {
+                "Name": "tomatoes",
+                "qties": 2,
+                "unity price": 1000.0,
+                "Total price": 2000.0
+            }
+        ]
+    }
+}
